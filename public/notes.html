@@ -16,6 +16,7 @@
   <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Note Taker
     </a>
+    <button class = "btn-primary notesave"> Save Note</button>
     <div class="icons">
       <i class="fas fa-save text-light save-note"></i>
       <i class="fas fa-pen text-light new-note"></i>
@@ -37,6 +38,27 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/assets/js/index.js"></script>
+  <script type = "text/javascript">
+  $(".notesave").on("click", function(event){
+    event.preventDefault();
+
+    var newNote = {
+      title: $(".note-title").val(),
+      text: $(".note-textarea").val()
+    };
+
+    $.post("/api/notes", newNote, function(data){
+      if (data) {
+        alert("you're getting some part to work?");
+      }
+
+      else{
+        alert("nice try haha");
+      }
+    });
+
+  });
+  </script>
 </body>
 
 </html>
