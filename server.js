@@ -11,10 +11,10 @@ app.use(express.json());
 
 let Notes = [{
     "title" : "blah",
-    "text" : "fuck"}
+    "text" : "blah"}
     ]
 
-app.get("*", function(req, res){
+app.get("/", function(req, res){
 res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
@@ -23,7 +23,7 @@ app.get("/notes", function(req, res){
     });
 
 app.get("/api/notes", function(req, res){
-    res.sendFile(path.join(__dirname, "db.json"));
+    return res.json(Notes);
 })    
 
 app.listen(PORT, function(){
@@ -37,4 +37,4 @@ app.post("/api/notes", function(req, res){
     Notes.push(newNote);
     
     
-})
+});
