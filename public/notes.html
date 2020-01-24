@@ -44,10 +44,12 @@
 
     var newNote = {
       title: $(".note-title").val(),
-      text: $(".note-textarea").val()
+      text: $(".note-textarea").val(),
+      id: 1
     };
 
     $.post("/api/notes", newNote, function(data){
+      console.log("LINE 52")
       if (data) {
         alert("you're getting some part to work?");
       }
@@ -55,7 +57,13 @@
       else{
         alert("nice try haha");
       }
+
+      
     });
+
+    // $.post("db/db.json", newNote, function(data){
+
+    // })
 
   });
   </script>

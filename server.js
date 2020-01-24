@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 const PORT = 8000;
@@ -31,10 +32,24 @@ app.listen(PORT, function(){
 });
 
 app.post("/api/notes", function(req, res){
-    
+    let currentIdNumber = 1
     let newNote = req.body;
+    currentIdNumber = newNote.id;
     console.log(newNote);
     Notes.push(newNote);
+    currentIdNumber += 1
     
-    
+    //read the db.json using fs 
+    // fs.readFile("db/db.json", JSON.parse(data), function(err){
+    // })
+    //in that, parse data you get back
+    //let Notearray = JSON.parse(data)
+    //array.length-1 
+    // newNote.id += 1
+    //push newNote into Notearray
+    //writeFile("db/db.json", JSON.stringify(newNote), function(err){})
+    fs.appendFile("db/db.json", JSON.stringify(newNote), function(err){
+        if (err) throw err;
+        console.log("saved into db.json")
+    });
 });
